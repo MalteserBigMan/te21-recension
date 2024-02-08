@@ -2,7 +2,12 @@
 
 {% block content %}
 <main class="wrapper">
-  <h1>{{ title }} Malte</h1>
-  <a href={{ href }}>Länk sida 2 </a>
+  <h1>{{ title }}</h1>
+
+  {% for movie in movies %}
+    <p>{{ movie.title }} {{ movie.score }}</p>
+
+  {% endfor %}
+
 </main>
 {% endblock %}
