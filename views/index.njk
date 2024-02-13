@@ -5,7 +5,7 @@
   <h1>{{ title }}</h1>
 
   {% for movie in movies %}
-    <p>{{ movie.title }} {{ movie.score }}</p>
+    <li><a href="/movies/{{movie.id}}">{{ movie.name }}, {{ movie.length }}min, {{movie.director}}, {{movie.score }} </a></li>
 
   {% endfor %}
 

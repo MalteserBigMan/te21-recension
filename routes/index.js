@@ -2,12 +2,26 @@ const express = require('express')
 const router = express.Router()
 const pool = require('../db')
 
-router.get('/', async (req, res) => {
-    try {
-        const id = parseInt(req.params.id)
-    //   const [part] = await pool.promise().query('SELECT * FROM malte_part where id = ' + id)
+router.get('/movies/:id', async function (req, res) {
+    console.log(req.params.id)
+    const [movie] = await pool.promise().query(`select * from malte_movie 
+        JOIN malte_score ON malte_movie.id = malte_score.movie_id
+        WHERE malte_movie.id = ${req.params.id}`)
 
-    const movies = [
+        console.log(movie)
+    res.render('movie.njk', { 
+      title: 'MMDB',
+      message: 'Välkommen till min movie database',
+      movie: movie[0]
+    })
+  })
+
+router.get('/movies', async (req, res) => {
+    try {
+       const [movies] = await pool.promise().query('select * from malte_movie JOIN malte_score on malte_movie.id = malte_score.movie_id')
+       //const [score] = await pool.promise().query('select * from malte_score')
+
+/*     const movies = [
         {
             "title": "Ursus",
             "score": "4.5⭐"
@@ -23,8 +37,9 @@ router.get('/', async (req, res) => {
         {
             "title": "Samuels Sugeri",
             "score": "10⭐"
-        }
-    ]
+        } 
+    ]*/
+    //res.json(movies, score)
       res.render('index.njk', { title: "MMDB", movies})  
     } catch (error) {
         console.log(error)
