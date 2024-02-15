@@ -2,6 +2,14 @@ const express = require('express')
 const router = express.Router()
 const pool = require('../db')
 
+
+
+router.get('/', function (req, res){
+    res.render('index.njk', {
+        title: 'MMDB'
+    })
+})
+
 router.get('/movies/:id', async function (req, res) {
     console.log(req.params.id)
     const [movie] = await pool.promise().query(`select * from malte_movie 
