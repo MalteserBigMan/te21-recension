@@ -55,5 +55,14 @@ router.get('/movies', async (req, res) => {
 
 })
 
+router.get('/recensionform', function (req,res){
+    res.render('recensionform.njk', {title: 'Ny recension'})
+})
+
+router.post('/recensionform', async function (req, res){
+    console.log(req.body)
+    res.json(req.body)
+})
+
 
 module.exports = router

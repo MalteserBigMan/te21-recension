@@ -3,7 +3,7 @@
 {% block content %}
 <main class="wrapper">
   <h1>{{ title }}</h1>
-
+  <a href="/recensionform">Skapa en katt</a>
   {% for movie in movies %}
     <li><a href="/movies/{{movie.id}}">{{ movie.name }}, {{ movie.length }}min, {{movie.director}}, {{movie.score }} </a></li>
 
